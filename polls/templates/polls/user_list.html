@@ -1,0 +1,45 @@
+<h1>pub_users</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<table>
+    <tr>
+        <th>No</th>
+        <th>User Name</th>
+        <th>Action</th>
+    </tr>
+    {% for pub_user in pub_users.all %}
+        <tr>
+            <td><label > {{ pub_user.id }} </label></td>
+            <td><label >{{ pub_user.user_name }}</label><br /></td>
+            <td><a href="/details?id={{ pub_user.id }}">Detail</a></td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+{% if cl_data %}
+
+    <table>
+
+        <form action="/details/" method="POST">
+            {% csrf_token %}
+            {% for key, value in cl_data.items %}
+                {% if key != '_id' and key != '_rev' %}
+                    <tr >
+                        <td>{{key}}</td>
+                        <td><input name="{{ key }}" value="{{ value }}"/></td>
+                    </tr>
+                {% else %}
+                    <tr hidden="hidden">
+                        <td>{{key}}</td>
+                        <td><input name="{{ key }}" value="{{ value }}"/></td>
+                    </tr>
+                {% endif %}
+
+            {% endfor %}
+            <hr><br>
+            <input type="submit" value="Save">
+        </form>
+    </table>
+{% endif %}

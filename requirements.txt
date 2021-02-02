@@ -1,7 +1,7 @@
 certifi==2018.10.15
 chardet==3.0.4
 cloudant==2.10.0
-Django==1.11.16
+Django==2.2.18
 django-environ==0.4.5
 idna==2.7
 python-dotenv==0.9.1
